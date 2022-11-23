@@ -1,5 +1,18 @@
 <?php
 
+// solicitando ao composer que gerencie o carregamento automatico dos arquivos.
+
+use App\Connection\DatabaseConnection;
+
+include_once '../vendor/autoload.php';
+
+include '../config/database.php';
+
+var_dump(
+    DatabaseConnection::abrirConexao()
+);
+
+
 $rotas = require '../config/routes.php';
 
 $url = $_SERVER['REQUEST_URI']; //$_SERVER['REQUEST_URI'] = Pegando a url acessada.

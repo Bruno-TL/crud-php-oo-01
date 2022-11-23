@@ -1,9 +1,9 @@
 <?php
 
-require_once '../src/Controller/AlunoController.php';
-require_once '../src/Controller/CursoController.php';
-require_once '../src/Controller/ProfessorController.php';
-require_once '../src/Controller/SiteController.php';
+use App\Controller\AlunoController;
+use App\Controller\CursoController;
+use App\Controller\ProfessorController;
+use App\Controller\SiteController;
 
 function criarRota(string $controllerName, string $methodName) :array
 {
@@ -17,7 +17,7 @@ $rotas = [
     '/' => criarRota(SiteController::class, 'inicio'),
 
     '/alunos/listar' => criarRota(AlunoController::class, 'listar'),
-    '/alunos/novo' => criarRota(AlunoController::class, 'novo'),
+    '/alunos/novo' => criarRota(AlunoController::class, 'cadastrar'),
     '/alunos/editar' => criarRota(AlunoController::class, 'editar'),
     '/alunos/excluir' => criarRota(AlunoController::class, 'excluir'),
 

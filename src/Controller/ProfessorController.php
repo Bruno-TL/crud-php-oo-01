@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Controller;
+
 class ProfessorController
 {
     public function listar() :void

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+namespace App\Model;
+
 use DateTime;
 
-class Aluno
+class Aluno extends Pessoa
 {
-    public string $nome;
-    public string $cpf;
     public int $matricula;
     public DateTime $dataNascimento;
     public bool $status;
