@@ -8,10 +8,6 @@ include_once '../vendor/autoload.php';
 
 include '../config/database.php';
 
-var_dump(
-    DatabaseConnection::abrirConexao()
-);
-
 
 $rotas = require '../config/routes.php';
 

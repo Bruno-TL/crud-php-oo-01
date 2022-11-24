@@ -9,6 +9,6 @@ abstract class Pessoa
     public string $cpf;
 }
 
-$p = new Pessoa();
-$p->nome = "Bruno";
-echo "OI,".$p->nome;
+// $p = new Pessoa();
+// $p->nome = "Bruno";
+// echo "OI,".$p->nome;
