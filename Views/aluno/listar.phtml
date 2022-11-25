@@ -2,7 +2,8 @@
     <h1>Gerenciar Alunos</h1>
 
     <div>
-        <a href="/alunos/novo" class="btn btn-outline-dark">Novo Aluno</a>
+        <a href="/alunos/novo" class="btn btn-outline-info">Novo Aluno</a>
+        <a href="/alunos/relatorio" class="btn btn-outline-info">Gerar PDF</a>
     </div>
 
     <table class="table table-striped table-hover mt-4">
@@ -18,11 +19,18 @@
         </thead>
         <tbody>
             <?php
-                foreach ($alunos as $aluno){
+                foreach ($alunos ?? [] as $aluno){
                     echo "
                     <tr>
                         <td>{$aluno->id}</td>
                         <td>{$aluno->nome}</td>
+                        <td>{$aluno->matricula}</td>
+                        <td>{$aluno->cpf}</td>
+                        <td>{$aluno->email}</td>
+                        <td>
+                            <a href='' class='btn btn-outline-warning btn-sm'>Excluir</a>
+                            <a href='' class='btn btn-outline-danger btn-sm'>Editar</a>
+                        </td>
                     </tr>";
                 }
             ?>

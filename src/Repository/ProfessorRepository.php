@@ -41,7 +41,7 @@ class ProfessorRepository implements RepositoryInterface
     public function excluir(string $id): void
     {
         $conexao = DatabaseConnection::abrirConexao();
-        $sql = "DELETE FROM ".self::TABLE." WHERE id = '{id}'";
+        $sql = "DELETE FROM ".self::TABLE." WHERE id = '{$id}'";
 
         $query = $conexao->query($sql);
         $query->execute();

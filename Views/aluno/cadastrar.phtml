@@ -1,3 +1,28 @@
-<?php
+<section class="mt-3 card card-body">
+    <h1>Novo Aluno</h1>
+    
+    <div class="row">
+        <div class="col">
+            <form action="/alunos/novo" method="POST">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" id="nome" class="form-control mb-3">
 
-echo "Página de cadastrar da pasta views";
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" class="form-control mb-3">
+
+                <label for="cpf">Cpf</label>
+                <input type="text" name="cpf" id="cpf" class="form-control mb-3">
+                
+                <label for="nascimento">Data Nascimento</label>
+                <input type="date" name="nascimento" id="nascimento" class="form-control mb-3">
+
+                <label for="genero">Genero</label>
+                <input type="text" name="genero" id="genero" class="form-control mb-3">
+
+                <button class="btn btn-primary">Pronto</button>
+
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</section>
