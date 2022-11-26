@@ -11,17 +11,17 @@ use Exception;
 
 class AlunoController extends AbstractController
 {
-    public function listar() :void
+    public function listar(): void
     {
         $rep = new AlunoRepository();
 
         $alunos = $rep->buscarTodos();
-        $this->render('aluno/listar', ['alunos'=> $alunos,]);
+        $this->render('aluno/listar', ['alunos' => $alunos,]);
     }
 
-    public function cadastrar() :void
+    public function cadastrar(): void
     {
-        if(true === empty($_POST)){
+        if (true === empty($_POST)) {
             $this->render('aluno/cadastrar');
             return;
         }
@@ -29,19 +29,19 @@ class AlunoController extends AbstractController
         $aluno = new Aluno();
         $aluno->nome = $_POST['nome'];
         $aluno->dataNascimento = $_POST['nascimento'];
-        $aluno->cpf= $_POST['cpf'];
+        $aluno->cpf = $_POST['cpf'];
         $aluno->email = $_POST['email'];
         $aluno->genero = $_POST['genero'];
 
         $rep = new AlunoRepository();
-        try{
+        try {
             $rep->inserir($aluno);
-        }catch (Exception $exception){
-            if(true === str_contains($exception->getMessage(), 'cpf')){
+        } catch (Exception $exception) {
+            if (true === str_contains($exception->getMessage(), 'cpf')) {
                 die('CPF já existe');
             }
 
-            if(true === str_contains($exception->getMessage(), 'email')){
+            if (true === str_contains($exception->getMessage(), 'email')) {
                 die('Email já existe');
             }
 
@@ -49,21 +49,40 @@ class AlunoController extends AbstractController
         }
 
         $this->reidrect('/alunos/listar');
-        
     }
 
-    public function editar() :void
+    public function editar(): void
     {
-        if(true === empty($_POST)){
-            $id = $_GET['id'];
-            $rep = new AlunoRepository();
-            $aluno = $rep->buscarUm($id);
-            $this->render('aluno/editar',[$aluno]);
+        $id = $_GET['id'];
+        $rep = new AlunoRepository();
+        $aluno = $rep->buscarUm($id);
+
+        $this->render('aluno/editar', [$aluno]);
+        if (false === empty($_POST)) {
+            $aluno->nome = $_POST['nome'];
+            $aluno->dataNascimento = $_POST['nascimento'];
+            $aluno->cpf = $_POST['cpf'];
+            $aluno->email = $_POST['email'];
+            $aluno->genero = $_POST['genero'];
+
+            try {
+                $rep->atualizar($aluno, $id);
+            } catch (Exception $exception) {
+                if (true === str_contains($exception->getMessage(), 'cpf')) {
+                    die('CPF ja existe');
+                }
+
+                if (true === str_contains($exception->getMessage(), 'email')) {
+                    die('Email ja existe');
+                }
+
+                die('Vish, aconteceu um erro');
+            }
+            $this->reidrect('/alunos/listar');
         }
-         
     }
 
-    public function excluir() :void
+    public function excluir(): void
     {
         $id = $_GET['id'];
         $rep = new AlunoRepository();
@@ -71,7 +90,7 @@ class AlunoController extends AbstractController
         $this->reidrect('/alunos/listar');
     }
 
-    public function relatorio(): void 
+    public function relatorio(): void
     {
         $hoje = date('d/m/Y');
         $design = "
@@ -81,7 +100,7 @@ class AlunoController extends AbstractController
         ";
 
         $dompdf = new Dompdf();
-        $dompdf->setPaper('A4','portrait'); //tamanho da pagina
+        $dompdf->setPaper('A4', 'portrait'); //tamanho da pagina
         $dompdf->loadHtml($design); // carrega o conteudo do pdf
         $dompdf->render(); // aqui renderiza
         $dompdf->stream(); //é aqui que a magica acontece

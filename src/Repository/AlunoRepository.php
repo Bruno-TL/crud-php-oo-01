@@ -51,6 +51,16 @@ class AlunoRepository implements RepositoryInterface
 
     public function atualizar(object $novosDados, string $id): object
     {
+        $sql = "UPDATE ".self::TABLE." SET 
+        nome='{$novosDados->nome}',
+        email='{$novosDados->email}',
+        cpf='{$novosDados->cpf}',
+        dataNascimento='{$novosDados->dataNascimento}',
+        genero='{$novosDados->genero}'
+        WHERE id = '{$id}';
+        ";
+
+        $this->pdo->query($sql);
         return $novosDados;
     }
 
