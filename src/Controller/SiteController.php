@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-class SiteController
+class SiteController extends AbstractController
 {
     public function inicio() :void
     {
-        echo "Página de inicio";
+        $this->render('inicio/inicio');
     }
 }

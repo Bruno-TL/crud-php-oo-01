@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-class Curso
+class Curso extends Categoria
 {
-    public string $nome;
+    public string $nomeCurso;
     public int $cargaHoraria;
     public string $descricao;
     public bool $status;

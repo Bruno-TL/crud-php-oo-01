@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-class CursoController
+class CursoController extends AbstractController
 {
     public function listar() :void
     {
-        echo "Página de listar = curso";
+        $this->render('curso/listar');
     }
 
     public function cadastrar() :void
     {
-        echo "Página de cadastrar = curso";
+        $this->render('curso/cadastrar');
     }
 
     public function editar() :void
     {
-        echo "Página de editar = curso";
+        $this->render('curso/editar');
     }
 
     public function excluir() :void
     {
-        echo "Página de excluir = curso";
+        $this->render('curso/excluir');
     }
 }
