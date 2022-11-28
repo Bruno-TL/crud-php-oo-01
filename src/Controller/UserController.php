@@ -38,5 +38,8 @@ class UserController extends AbstractController
         $user->email= $_POST['email'];
         $user->senha = $senha;
         $user->perfil = $$_POST['perfil'];
+
+        $this->repository->insert($user);
+        $this->reidrect('/usuarios/listar');
     }
 }

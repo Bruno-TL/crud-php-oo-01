@@ -14,13 +14,15 @@ class UserRepository
 
     public function __construct()
     {
-        $this->pdo = new DatabaseConnection();
+        $this->pdo = DatabaseConnection::abrirConexao();
     }
 
     public function findAll(): iterable
     {
         $sql = "SELECT * FROM ".self::TABLE;
-        return $this->pdo->query($sql);
+        $query =  $this->pdo->query($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_CLASS, User::class);
     }
 
     public function insert(User $user): User
