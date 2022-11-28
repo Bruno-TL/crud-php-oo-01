@@ -16,11 +16,11 @@ class AuthController extends AbstractController
 
     public function login(): void
     {
-        $this->render('auth/login');
+        $this->render('auth/login', navbar: false);
     }
 
     public function logout(): void
     {
-        
+
     }
 }
