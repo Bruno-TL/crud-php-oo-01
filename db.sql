@@ -62,3 +62,16 @@ INSERT INTO tb_cursos
 ('Design e Criaão','190hr','Fazer uns desenhos com um profissional',true);
 
 SELECT * FROM tb_cursos;
+
+-------------------------------------------------------- TABLE USER
+
+ CREATE TABLE tb_user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    perfil VARCHAR(50) NOT NULL
+ );
+
+ INSERT INTO tb_user
+ ()
