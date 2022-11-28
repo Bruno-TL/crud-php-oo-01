@@ -51,17 +51,33 @@ CREATE TABLE tb_cursos (
     nome VARCHAR(100) NOT NULL,
     cargaHoraria VARCHAR(40) NOT NULL,
     descricao VARCHAR(100) NOT NULL,
-    status TINYINT NOT NULL
+    status TINYINT NOT NULL,
+    idCategoria INT NOT NULL,
+    FOREIGN KEY (idCategoria) REFERENCES tb_categorias(id)
 );
 
 INSERT INTO tb_cursos
-(nome, cargaHoraria, descricao, status) VALUES
-('Desenvolvedor Full Stack','360hr','Curso para desenvolver softwares',true),
-('Data Analytucs','190hr','Curso para se tornar um Analista de Dados',true),
-('Marketing Digital','190hr','Curso para virar um profissional no Marketing',true),
-('Design e Criaão','190hr','Fazer uns desenhos com um profissional',true);
+(nome, cargaHoraria, descricao, status, idCategoria) VALUES
+('Desenvolvedor Full Stack','360hr','Curso para desenvolver softwares',true,1),
+('Data Analytucs','190hr','Curso para se tornar um Analista de Dados',true,1),
+('Marketing Digital','190hr','Curso para virar um profissional no Marketing',true,2),
+('Design e Criaão','190hr','Fazer uns desenhos com um profissional',true,2);
 
 SELECT * FROM tb_cursos;
+
+-------------------------------------------------------- TABLE CATEGORIA
+CREATE TABLE tb_categorias (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL
+);
+
+INSERT INTO tb_categorias (nome)
+VALUES ('Formação'),('Imersivo'),('Itensivo');
+
+--A palavra- INNER JOINchave seleciona registros que possuem 
+--valores correspondentes em ambas as tabelas.
+
+SELECT * FROM tb_cursos INNER JOIN tb_categorias ON tb_cursos.idCategoria = tb_categorias.id;
 
 -------------------------------------------------------- TABLE USER
 

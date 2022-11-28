@@ -6,7 +6,7 @@ namespace App\Model;
 
 class Curso extends Categoria
 {
-    public string $nomeCurso;
+    public string $nome;
     public int $cargaHoraria;
     public string $descricao;
     public bool $status;
