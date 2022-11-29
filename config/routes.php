@@ -28,6 +28,7 @@ $rotas = [
     '/cursos/cadastrar' => criarRota(CursoController::class, 'cadastrar'),
     '/cursos/editar' => criarRota(CursoController::class, 'editar'),
     '/cursos/excluir' => criarRota(CursoController::class, 'excluir'),
+    '/cursos/relatorip' => criarRota(CursoController::class, 'relatorio'),
 
     '/professores/listar' => criarRota(ProfessorController::class, 'listar'),
     '/professores/novo' => criarRota(ProfessorController::class, 'novo'),

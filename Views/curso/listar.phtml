@@ -2,7 +2,8 @@
     <h1>Gerenciar Cursos</h1>
 
     <div class="mt-2">
-        <a href="/cursos/novo" class="btn btn-outline-dark">Novo Curso</a>
+        <a href="/cursos/cadastrar" class="btn btn-outline-dark">Novo Curso</a>
+        <a href="/cursos/relatorio" target="_blank" class="btn btn-outline-info">Gerar PDF</a>
     </div>
 
     <table class="table table-striped table-hover mt-4">
@@ -12,7 +13,7 @@
                 <th>Nome</th>
                 <th>Carga Hoararia</th>
                 <th>Descrição</th>
-                <th>Categoria</th>
+                <th>Categoria</th> 
                 <th>Ações</th>
             </tr>
         </thead>
@@ -22,14 +23,14 @@
                 foreach ($cursos as $curso) {
                     echo "
                         <tr>
-                            <td>{$curso->id}</td>
-                            <td>{$curso->nome}</td>
-                            <td>{$curso->cargaHoraria}</td>
-                            <td>{$curso->descricao}</td>
-                            <td>{$curso->categoria_id}</td>
+                            <td>{$curso['curso_id']}</td>
+                            <td>{$curso['curso_nome']}</td>
+                            <td>{$curso['curso_carga_horaria']}</td>
+                            <td>{$curso['curso_descricao']}</td>
+                            <td>{$curso['categoria_nome']}</td>
                             <td>
-                                <a href='/cursos/editar?id={$curso->id}' class='btn btn-outline-warning'>Editar</a>
-                                <a href='/cursos/excluir?id={$curso->id}' class='btn btn-outline-danger'>Deletar</a>
+                                <a href='/cursos/editar?id='{$curso['curso_id']}' class='btn btn-outline-warning'>Editar</a>
+                                <a href='/cursos/excluir?id='{$curso['curso_id']}' class='btn btn-outline-danger'>Deletar</a>
                             </td>
                         </tr>
                     ";
