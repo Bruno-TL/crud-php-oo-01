@@ -4,7 +4,7 @@
     
     <div class="row">
         <div class="col">
-            <form action="/curso/cadastrar" method="POST">
+            <form action="" method="POST">
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" id="nome" class="form-control mb-3" >
 
@@ -13,12 +13,17 @@
 
                 <label for="descricao">Descrição</label>
                 <input type="text" name="descricao" id="descricao" class="form-control mb-3">
-                
-                <label for="status">Status </label>
-                <input type="text" name="status" id="status" class="form-control mb-3">
 
-                <label for="categoria_id">Categoria id</label>
-                <input type="text" name="categoria_id" id="categoria_id" class="form-control mb-3">
+                <label for="categoria">Categoria id</label>
+                <select name="categoria" id="categoria" class="form-control mb-3">
+                    <?php
+                        foreach($categorias as $categoria){
+                            echo "
+                                <option value='{$categoria->id}'>{$categoria->nome}</option>
+                            ";
+                        }
+                    ?>
+                </select>
 
                 <button class="btn btn-primary">Pronto</button>
 

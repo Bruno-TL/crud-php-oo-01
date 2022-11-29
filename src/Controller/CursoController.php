@@ -6,11 +6,14 @@ namespace App\Controller;
 
 use App\Model\Curso;
 use App\Repository\CursoRepository;
+use App\Repository\CategoriaRepository;
 use Dompdf\Dompdf;
 use Exception;
 
 class CursoController extends AbstractController
 {
+    private CursoRepository $repository;
+
     public function __construct()
     {
         $this->repository = new CursoRepository;
@@ -18,6 +21,7 @@ class CursoController extends AbstractController
 
     public function listar() :void
     {
+        $this->checkLogin();
         $cursos = $this->repository->buscarTodos();
 
         $this->render('curso/listar', [
@@ -27,8 +31,12 @@ class CursoController extends AbstractController
 
     public function cadastrar() :void
     {
+        $rep = new CategoriaRepository();
         if (true === empty($_POST)) {
-            $this->render('curso/cadastrar');
+            $categorias = $rep->buscarTodos();
+            $this->render('curso/cadastrar',[
+                'categorias' => $categorias
+            ]);
             return;
         }
 
@@ -36,10 +44,10 @@ class CursoController extends AbstractController
         $curso->nome = $_POST['nome'];
         $curso->cargaHoraria = $_POST['cargaHoraria'];
         $curso->descricao = $_POST['descricao'];
-        $curso->status = $_POST['status'];
-        $curso->categoria_id = $_POST['categoria_id'];
+        $curso->categoria_id = intval($_POST['categoria']);
 
         try {
+            // possivel ERRO
             $this->repository->inserir($curso);
         } catch (Exception $exception) {
             if (true === str_contains($exception->getMessage(), 'nome')) {
@@ -62,13 +70,13 @@ class CursoController extends AbstractController
     }
 
     // public function relatorio() :void
-    // // {
-    // //     $dompdf = new Dompdf();
-    // //     $dompdf->setPaper('A4', 'portrait'); //tamanho da pagina
-    // //     $dompdf->loadHtml($design); // carrega o conteudo do pdf
-    // //     $dompdf->render(); // aqui renderiza
-    // //     $dompdf->stream('relatorio-alunos.pdf', [
-    // //         'Attachment' => 0,
-    // //     ]); //é aqui que a magica acontece
+    // {
+    //     $dompdf = new Dompdf();
+    //     $dompdf->setPaper('A4', 'portrait'); //tamanho da pagina
+    //     $dompdf->loadHtml($design); // carrega o conteudo do pdf
+    //     $dompdf->render(); // aqui renderiza
+    //     $dompdf->stream('relatorio-alunos.pdf', [
+    //         'Attachment' => 0,
+    //     ]); //é aqui que a magica acontece
     // }
 }

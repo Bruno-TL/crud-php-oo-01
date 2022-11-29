@@ -8,6 +8,7 @@ class SiteController extends AbstractController
 {
     public function inicio() :void
     {
-        $this->render('inicio/inicio');
+        // $this->render('inicio/inicio');
+        $this->checkLogin();
     }
 }
