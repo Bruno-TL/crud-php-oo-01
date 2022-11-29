@@ -2,7 +2,7 @@
     <h1>Gerenciar Alunos</h1>
 
     <div>
-        <a href="/alunos/novo" class="btn btn-outline-info">Novo Aluno</a>
+        <a href="/usuarios/adicionar" class="btn btn-outline-info">Novo Aluno</a>
         <a href="/alunos/relatorio" target="_blank" class="btn btn-outline-info">Gerar PDF</a>
     </div>
 
@@ -12,7 +12,6 @@
                 <th>#ID</th>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Perfil</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -23,8 +22,6 @@
                     <tr>
                         <td>{$user->id}</td>
                         <td>{$user->nome}</td>
-                        <td>{$user->matricula}</td>
-                        <td>{$user->cpf}</td>
                         <td>{$user->email}</td>
                         <td>
                             <a href='/usuarios/editar?id={$user->id}' class='btn btn-outline-warning btn-sm'>Editar</a>

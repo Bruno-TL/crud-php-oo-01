@@ -6,6 +6,8 @@ use App\Connection\DatabaseConnection;
 
 include_once '../vendor/autoload.php';
 
+session_start();
+
 include '../config/database.php';
 
 

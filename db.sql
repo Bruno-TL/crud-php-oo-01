@@ -34,12 +34,11 @@ CREATE TABLE tb_professores (
     cpf CHAR(11) UNIQUE NOT NULL
 );
 
-INSERT INTO tb_professores
-(nome,endereco,formacao,status,cpf)
+INSERT INTO tb_professores (endereco,formacao,status,nome,cpf)
 VALUES
-('Gleidson','rua tal','HTML,CSS',true,'12345690321'),
-('Alê','Rua Jose','PHP,Pedreiro',true,'09876543123'),
-('Allan','Rua 2','JS,NEXT',true,'87612334526');
+('rua tal','HTML,CSS',true,'Gleidson','12345690321'),
+('Rua Jose','PHP,Pedreiro',true,'Alê','09876543123'),
+('Rua 2','JS,NEXT',true,'Allan','87612334526');
 
 SELECT * FROM tb_professores;
 
@@ -48,20 +47,19 @@ SELECT * FROM tb_professores;
 -- TABLE CURSOS
 CREATE TABLE tb_cursos (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    cargaHoraria VARCHAR(40) NOT NULL,
-    descricao VARCHAR(100) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    cargaHoraria VARCHAR(50) NOT NULL,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
     status TINYINT NOT NULL,
-    idCategoria INT NOT NULL,
-    FOREIGN KEY (idCategoria) REFERENCES tb_categorias(id)
+    categoria_id INT NOT NULL,
+    FOREIGN KEY (categoria_id) REFERENCES tb_categorias(id)
 );
 
 INSERT INTO tb_cursos
-(nome, cargaHoraria, descricao, status, idCategoria) VALUES
-('Desenvolvedor Full Stack','360hr','Curso para desenvolver softwares',true,1),
-('Data Analytucs','190hr','Curso para se tornar um Analista de Dados',true,1),
-('Marketing Digital','190hr','Curso para virar um profissional no Marketing',true,2),
-('Design e Criaão','190hr','Fazer uns desenhos com um profissional',true,2);
+(nome, cargaHoraria, descricao, status, categoria_id)
+VALUES
+('Design','192','profissional de design',1,2);
+
 
 SELECT * FROM tb_cursos;
 
@@ -77,17 +75,19 @@ VALUES ('Formação'),('Imersivo'),('Itensivo');
 --A palavra- INNER JOINchave seleciona registros que possuem 
 --valores correspondentes em ambas as tabelas.
 
-SELECT * FROM tb_cursos INNER JOIN tb_categorias ON tb_cursos.idCategoria = tb_categorias.id;
+SELECT * FROM tb_cursos INNER JOIN tb_categorias ON tb_cursos.categoria_id = tb_categorias.id;
 
 -------------------------------------------------------- TABLE USER
 
- CREATE TABLE tb_user (
+CREATE TABLE tb_user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
     perfil VARCHAR(50) NOT NULL
- );
+);
 
  INSERT INTO tb_user
- ()
+ (nome,email,senha,perfil)
+ VALUES
+ ('Bruno','bruno@email.com','1234','br');

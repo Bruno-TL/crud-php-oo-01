@@ -17,27 +17,27 @@ class UserController extends AbstractController
 
     public function listar(): void
     {
-        $user = $this->repository->findAll();
+        $users = $this->repository->findAll();
 
-        $this->render('user/listar', [
-            'user' => $user,
+        $this->render('usuarios/listar', [
+            'users' => $users,
         ]);
     }
 
     public function adicionar(): void
     {
         if(true === empty($_POST)) {
-            $this->render('user/adicionar');
+            $this->render('usuarios/adicionar');
             return;
         }
 
         $senha = password_hash($_POST['senha'], PASSWORD_ARGON2I);
 
         $user = new User();
-        $user->name = $_POST['nome'];
+        $user->nome = $_POST['nome'];
         $user->email= $_POST['email'];
         $user->senha = $senha;
-        $user->perfil = $$_POST['perfil'];
+        $user->perfil = $_POST['perfil'];
 
         $this->repository->insert($user);
         $this->reidrect('/usuarios/listar');

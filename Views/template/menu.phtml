@@ -4,9 +4,11 @@
         <a href="/alunos/listar" class="btn btn-outline-dark">Alunos</a>
         <a href="/professores/listar" class="btn btn-outline-dark">Professor</a>
         <a href="/cursos/listar" class="btn btn-outline-dark">Cursos</a>
+        <a href="/usuarios/listar" class="btn btn-outline-dark">usuarios</a>
     </div>
 
     <div class="text-end">
+        Bem vindo,<?php echo App\Security\UserSecurity::getUser()->nome; ?>
         <a href="/logout" class="btn btn-outline-dark">Desconectar</a>
     </div>
 

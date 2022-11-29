@@ -8,5 +8,5 @@ namespace App\Model;
 class Categoria
 {
     public int $id;
-    public string $nomeCategoria; 
+    public string $nome; 
 } 

@@ -10,4 +10,5 @@ class Curso extends Categoria
     public int $cargaHoraria;
     public string $descricao;
     public bool $status;
+    public int $categoria_id;
 }

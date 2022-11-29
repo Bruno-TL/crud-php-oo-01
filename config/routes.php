@@ -35,9 +35,10 @@ $rotas = [
     '/professores/excluir' => criarRota(ProfessorController::class, 'excluir'),
 
     '/usuarios/listar' => criarRota(UserController::class, 'listar'),
-    '/usuarios/novo' =>criarRota(UserController::class, 'adicionar'),
+    '/usuarios/adicionar' =>criarRota(UserController::class, 'adicionar'),
 
     '/login' =>criarRota(AuthController::class, 'login'),
+    '/logout'=>criarRota(AuthController::class,'logout')
     
 ];
 
