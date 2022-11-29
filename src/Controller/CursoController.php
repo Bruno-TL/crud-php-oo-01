@@ -61,11 +61,29 @@ class CursoController extends AbstractController
 
     public function editar() :void
     {
-        $this->render('curso/editar');
+        $id = $_GET['id'];
+        $rep = new CategoriaRepository();
+        $categorias = $rep->buscarTodos();
+        $curso = $this->repository->buscarUm($id);
+        $this->render('curso/editar',[
+            'categorias' => $categorias,
+            'curso' => $curso
+        ]);
+
+        if(false === empty($_POST)){
+            $curso = new Curso();
+            $curso->nome = $_POST['nome'];
+            $curso->descricao = $_POST['descricao'];
+            $curso->cargaHoraria = $_POST['cargaHoraria'];
+            $curso->categoria_id = intval($_POST['categoria']);
+            $this->repository->atualizar($curso,$id);
+            $this->reidrect('/cursos/listar');
+        }
     }
 
     public function excluir() :void
     {
+
         $this->render('curso/excluir');
     }
 
