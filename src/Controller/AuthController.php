@@ -33,7 +33,7 @@ class AuthController extends AbstractController
 
             UserSecurity::connect($user);
 
-            $this->reidrect('alunos/listar');
+            $this->render('inicio/inicio');
             return;
         }
         $this->render('auth/login', navbar: false);

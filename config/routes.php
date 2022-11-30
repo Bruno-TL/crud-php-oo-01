@@ -18,6 +18,7 @@ function criarRota(string $controllerName, string $methodName) :array
 
 $rotas = [
     '/' => criarRota(SiteController::class, 'inicio'),
+    '/home' => criarRota(SiteController::class, 'home'),
 
     '/alunos/listar' => criarRota(AlunoController::class, 'listar'),
     '/alunos/novo' => criarRota(AlunoController::class, 'cadastrar'),
