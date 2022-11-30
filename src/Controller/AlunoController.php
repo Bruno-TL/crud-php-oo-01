@@ -98,6 +98,23 @@ class AlunoController extends AbstractController
         $this->reidrect('/alunos/listar');
     }
 
+    public function loopAlunosRelatorio($alunos)
+    {
+        $loop = '';
+        foreach ($alunos as $aluno) {
+            $loop .= "
+            <tr>
+            <td>{$aluno->id}</td>
+            <td>{$aluno->nome}</td>
+            <td>{$aluno->matricula}</td>
+            <td>{$aluno->cpf}</td>
+            <td>{$aluno->email}</td>
+            </tr>";
+        }
+
+        return $loop;
+    }
+
     public function relatorio(): void
     {
         $hoje = date('d/m/Y');
@@ -107,25 +124,20 @@ class AlunoController extends AbstractController
             <h1>Relatorio em {$hoje}</h1>
             <hr>
             <em>Gerado em {$hoje}</em>
+            <hr>
 
-            <table border='1' width='100%' style='margin: top 30px;'>
+            <table border='1' width='100%' style=''>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Matricula</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Genero</th>
-                        <th>Data Nascimento</th>
                         <th>Cpf</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{$alunos[0]->id}</td>
-                        <td>{$alunos[0]->nome}</td>
-                    </tr>
+                    ".$this->loopAlunosRelatorio($alunos)."
                 </tbody>
             </table>
             ";

@@ -42,4 +42,11 @@ class UserController extends AbstractController
         $this->repository->insert($user);
         $this->reidrect('/usuarios/listar');
     }
+
+    public function excluir(): void
+    {
+        $id = $_GET['id'];
+        $this->repository->excluir($id);
+        $this->reidrect('/usuarios/listar');
+    }
 }

@@ -1,16 +1,17 @@
 <nav class="mt-3 d-flex justify-content-between">
     <div class="text-start">
-        <a href="/" class="btn btn-outline-dark">Inicio</a>
-        <a href="/alunos/listar" class="btn btn-outline-dark">Alunos</a>
-        <a href="/professores/listar" class="btn btn-outline-dark">Professor</a>
-        <a href="/cursos/listar" class="btn btn-outline-dark">Cursos</a>
-        <a href="/usuarios/listar" class="btn btn-outline-dark">Usuarios</a>
-        <a href="/categorias/listar" class="btn btn-outline-dark">Categorias</a>
+        <a href="/" class="btn btn-outline-primary">Inicio</a>
+        <a href="/alunos/listar" class="btn btn-outline-primary">Alunos</a>
+        <a href="/professores/listar" class="btn btn-outline-primary">Professor</a>
+        <a href="/cursos/listar" class="btn btn-outline-primary">Cursos</a>
+        <a href="/usuarios/listar" class="btn btn-outline-primary">Usuarios</a>
+        <a href="/categorias/listar" class="btn btn-outline-primary">Categorias</a>
     </div>
 
     <div class="text-end">
-        Bem vindo,<?php echo App\Security\UserSecurity::getUser()->nome; ?>
-        <a href="/logout" class="btn btn-outline-dark">Desconectar</a>
+        Bem vindo, <?php echo App\Security\UserSecurity::getUser()->nome; ?>
+        <a href="/logout" class="btn btn-outline-danger">Desconectar</a>
+        <a href="/login" class="btn btn-success">Login</a>
     </div>
 
 </nav>
