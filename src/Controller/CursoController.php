@@ -83,18 +83,62 @@ class CursoController extends AbstractController
 
     public function excluir() :void
     {
-
-        $this->render('curso/excluir');
+        $id = $_GET['id'];
+        $this->repository->excluir($id);
+        $this->reidrect('/cursos/listar');
     }
 
-    // public function relatorio() :void
-    // {
-    //     $dompdf = new Dompdf();
-    //     $dompdf->setPaper('A4', 'portrait'); //tamanho da pagina
-    //     $dompdf->loadHtml($design); // carrega o conteudo do pdf
-    //     $dompdf->render(); // aqui renderiza
-    //     $dompdf->stream('relatorio-alunos.pdf', [
-    //         'Attachment' => 0,
-    //     ]); //é aqui que a magica acontece
-    // }
+    public function loopCursoRelatorio(iterable $cursos): string
+    {
+        $listaCursos='';
+        foreach ($cursos as $curso) {
+            $listaCursos.= "
+                <tr>
+                    <td>{$curso['curso_id']}</td>
+                    <td>{$curso['curso_nome']}</td>
+                    <td>{$curso['curso_carga_horaria']}</td>
+                    <td>{$curso['curso_descricao']}</td>
+                    <td>{$curso['categoria_nome']}</td>
+                </tr>
+            ";
+        }
+        return $listaCursos;
+    }
+
+    public function relatorio() :void
+    {
+        $hoje = date('d/m/Y');
+        $cursos = $this->repository->buscarTodos();
+
+        $design = "
+            <h1>Relatorio dos Curso da DIGITAL COLLEGE</h1>
+            <h2>Curso Cadastrado até a Data:{$hoje}</h2>
+            <hr>
+            <em>Nunca pense em desistir, desista antes.</em>
+            <hr>
+
+            <table border='1' width='100%' style=' background-color: #cccccc; color:black;'>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Carga Horaria</th>
+                        <th>Curso Descrição</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ".$this->loopCursoRelatorio($cursos)."
+                </tbody>
+            </table>
+            ";
+
+        $dompdf = new Dompdf();
+        $dompdf->setPaper('A4', 'portrait'); //tamanho da pagina
+        $dompdf->loadHtml($design); // carrega o conteudo do pdf
+        $dompdf->render(); // aqui renderiza
+        $dompdf->stream('relatorio-alunos.pdf', [
+            'Attachment' => 0,
+        ]); //é aqui que a magica acontece
+    }
 }
