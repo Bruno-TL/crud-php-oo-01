@@ -9,6 +9,10 @@ Dentro da pasta, clone o projeto no terminal: git clone {link do clone} Dentro d
 
 php -S localhost:8000 -t public
 ---------------------------------------------------
+http://localhost:8000/login : crie um login para conseguir utiliza-lo.
+
+# Login padrão: Email: bruno@email.com ; senha: 1234.
+---------------------------------------------------
 # Para ter acesso a primeira página do projeto crie um usuario qualquer.
 Lembrete não perca a sua senha, ela vai ser criptografada.
 
