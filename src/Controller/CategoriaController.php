@@ -66,5 +66,8 @@ class CategoriaController extends AbstractController
 
     public function excluir(): void
     {
+        $id = $_GET['id'];
+        $this->repository->excluir($id);
+        $this->reidrect('/categorias/listar');
     }
 }

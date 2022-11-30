@@ -57,9 +57,8 @@ class CategoriaRepository implements RepositoryInterface
 
     public function excluir(string $id): void
     {
-        $conexao = DatabaseConnection::abrirConexao();
         $sql = "DELETE FROM ".self::TABLE." WHERE id = '{$id}'";
-        $query = $conexao->query($sql);
+        $query = $this->pdo->query($sql);
         $query->execute();
     }
 }
