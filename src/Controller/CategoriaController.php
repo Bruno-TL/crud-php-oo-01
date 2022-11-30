@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Model\Categoria;
 use App\Repository\CategoriaRepository;
+use Exception;
 
 class CategoriaController extends AbstractController
 {
@@ -20,7 +21,7 @@ class CategoriaController extends AbstractController
     {
         $this->checkLogin();
         $categorias = $this->repository->buscarTodos();
-        $this->render('categoria/listar',[
+        $this->render('categoria/listar', [
             'categorias' => $categorias
         ]);
     }
@@ -41,11 +42,29 @@ class CategoriaController extends AbstractController
 
     public function editar(): void
     {
+        $this->checkLogin();
+        $id = $_GET['id'];
+        $categoria = $this->repository->buscarUm($id);
 
+        $this->render('categoria/editar', [
+            'categoria' => $categoria
+        ]);
+
+        if (false === empty($_POST)) {
+            $categoria->nome = $_POST['nome'];
+            try {
+                $this->repository->atualizar($categoria, $id);
+            } catch (Exception $exception) {
+                if (true === str_contains($exception->getMessage(), 'nome')) {
+                    die('Categoria já existe');
+                }
+            }
+
+            $this->reidrect('/categorias/listar');
+        }
     }
 
     public function excluir(): void
     {
-
     }
 }

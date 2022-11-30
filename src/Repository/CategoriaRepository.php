@@ -29,7 +29,11 @@ class CategoriaRepository implements RepositoryInterface
 
     public function buscarUm(string $id): ?object
     {
-        return new \stdClass();
+        $sql = "SELECT * FROM ".self::TABLE." WHERE id = '{$id}'";
+        $query = $this->pdo->query($sql);
+        $query->execute();
+
+        return $query->fetchObject(Categoria::class);
     }
 
     public function inserir(object $dados): object
@@ -44,6 +48,10 @@ class CategoriaRepository implements RepositoryInterface
 
     public function atualizar(object $dados, string $id): object
     {
+        $sql = "UPDATE ".self::TABLE." SET 
+        nome='{$dados->nome}' WHERE id = '{$id}';
+        ";
+        $this->pdo->query($sql);
         return $dados;
     }
 
